@@ -35,7 +35,15 @@ class CustomerListViewController: UIViewController, UITableViewDelegate, UITable
     
     /// redirects user  to customer add screen
     @objc func addNewCustomerButtonAction(sender: UIBarButtonItem) {
-        // TODO: Create new customers screen
+        /// Pushing  to new customer view controller to create customers
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let customerDetailsViewController = storyboard.instantiateViewController(withIdentifier: "CustomerDetailsViewController") as! CustomerDetailsViewController
+        customerDetailsViewController.viewType = .create
+        customerDetailsViewController.customerCreationOnSuccess = { customer in
+            self.customersList.append(customer)
+            self.tableView.reloadData()
+        }
+        self.navigationController?.pushViewController(customerDetailsViewController, animated: true)
     }
     
     /// setting table view controller for table cell
