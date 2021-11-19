@@ -61,7 +61,16 @@ class CustomerListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Customer details should added
+        /// Redirecting user to customer details screen to update details
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let customerDetailsViewController = storyboard.instantiateViewController(withIdentifier: "CustomerDetailsViewController") as! CustomerDetailsViewController
+        customerDetailsViewController.viewType = .edit
+        customerDetailsViewController.selectedCustomer = customersList[indexPath.row]
+        /// reloading table view on customer details update
+        customerDetailsViewController.customerEditSuccess = {
+            self.tableView.reloadData()
+        }
+        self.navigationController?.pushViewController(customerDetailsViewController, animated: true)
     }
     
 
