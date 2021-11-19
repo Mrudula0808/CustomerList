@@ -29,12 +29,7 @@ class CustomerListViewController: UIViewController, UITableViewDelegate, UITable
     
     /// adding new customer button to navigation bar
     func addNavigationRightBarButtonItem() {
-        let addButton = UIBarButtonItem.init(
-              title: "New Customer",
-              style: .done,
-              target: self,
-              action: #selector(addNewCustomerButtonAction(sender:))
-        )
+        let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNewCustomerButtonAction(sender:)))
         self.navigationItem.rightBarButtonItem = addButton
     }
     
